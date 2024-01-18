@@ -1,0 +1,79 @@
+{
+	"name": "go-to-relative",
+	"displayName": "Relative \"Go to Line\"",
+	"publisher": "DanielBreiner",
+	"description": "Command for jump/go to a line by relative row count (similar to vim)",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.85.0"
+	},
+	"author": {
+		"name": "Daniel Breiner",
+		"email": "contact@danielbreiner.eu"
+	},
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/DanielBreiner/vscode-go-to-relative.git"
+	},
+	"homepage": "https://github.com/DanielBreiner/vscode-go-to-relative",
+	"bugs": {
+		"url": "https://github.com/DanielBreiner/vscode-go-to-relative/issues"
+	},
+	"keywords": [
+		"shortcut",
+		"relative",
+		"goto",
+		"line",
+		"jump"
+	],
+	"icon": "images/icon.png",
+	"categories": [
+		"Keymaps",
+		"Other"
+	],
+	"activationEvents": [],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "go-to-relative.gotoLine",
+				"title": "Go to Line/Column (Relative)..."
+			},
+			{
+				"command": "go-to-relative.gotoLineNegative",
+				"title": "Go to Line/Column (Relative, Negative)..."
+			}
+		],
+		"keybindings": [
+			{
+				"command": "go-to-relative.gotoLine",
+				"key": "ctrl+g",
+				"mac": "cmd+g"
+			},
+			{
+				"command": "go-to-relative.gotoLineNegative",
+				"key": "ctrl+shift+g",
+				"mac": "cmd+shift+g"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run build -- --minify",
+		"build": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
+		"compile": "npm run build -- --sourcemap",
+		"watch": "npm run build -- --sourcemap --watch",
+		"lint": "eslint src --ext ts",
+		"package": "pnpm vsce package --no-dependencies",
+		"publish": "pnpm vsce publish --no-dependencies"
+	},
+	"devDependencies": {
+		"@types/node": "18.x",
+		"@types/vscode": "^1.85.0",
+		"@typescript-eslint/eslint-plugin": "^6.15.0",
+		"@typescript-eslint/parser": "^6.15.0",
+		"esbuild": "~0.19.11",
+		"eslint": "^8.56.0",
+		"typescript": "^5.3.3"
+	}
+}
