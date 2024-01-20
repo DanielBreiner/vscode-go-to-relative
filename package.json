@@ -33,26 +33,26 @@
 		"Other"
 	],
 	"activationEvents": [],
-	"main": "./out/extension.js",
+	"main": "./out/main.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "go-to-relative.gotoLine",
+				"command": "go-to-relative.goToLine",
 				"title": "Go to Line/Column (Relative)..."
 			},
 			{
-				"command": "go-to-relative.gotoLineNegative",
+				"command": "go-to-relative.goToLineNegative",
 				"title": "Go to Line/Column (Relative, Negative)..."
 			}
 		],
 		"keybindings": [
 			{
-				"command": "go-to-relative.gotoLine",
+				"command": "go-to-relative.goToLine",
 				"key": "ctrl+g",
 				"mac": "cmd+g"
 			},
 			{
-				"command": "go-to-relative.gotoLineNegative",
+				"command": "go-to-relative.goToLineNegative",
 				"key": "ctrl+shift+g",
 				"mac": "cmd+shift+g"
 			}
