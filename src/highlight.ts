@@ -10,30 +10,39 @@ const lineHighlight = vscode.window.createTextEditorDecorationType({
 });
 
 const cursorHighlight = vscode.window.createTextEditorDecorationType({
-	borderColor: new vscode.ThemeColor("editorCursor.foreground"),
-	borderWidth: "2px",
-	borderStyle: "solid",
 	backgroundColor: new vscode.ThemeColor("editorCursor.foreground"),
+});
+
+const selectionHighlight = vscode.window.createTextEditorDecorationType({
+	backgroundColor: new vscode.ThemeColor("list.activeSelectionBackground"),
 });
 
 export function highlight({
 	editor,
 	input,
+	select,
 }: {
 	editor: vscode.TextEditor;
 	input: Input;
+	select: boolean;
 }) {
 	const newPosition = new vscode.Position(
 		editor.selection.active.line + input.lineDelta,
 		input.column ?? editor.selection.active.character
 	);
-	editor.setDecorations(lineHighlight, [
-		new vscode.Range(newPosition, newPosition),
-	]);
-	if (input.column !== undefined) {
-		editor.setDecorations(cursorHighlight, [
-			new vscode.Range(newPosition, newPosition.translate(0, 1)),
+	if (select) {
+		editor.setDecorations(selectionHighlight, [
+			new vscode.Range(editor.selection.start, newPosition),
 		]);
+	} else {
+		editor.setDecorations(lineHighlight, [
+			new vscode.Range(newPosition, newPosition),
+		]);
+		if (input.column !== undefined) {
+			editor.setDecorations(cursorHighlight, [
+				new vscode.Range(newPosition, newPosition.translate(0, 1)),
+			]);
+		}
 	}
 	if (!editor.visibleRanges[0]?.contains(newPosition)) {
 		editor.revealRange(
@@ -46,4 +55,5 @@ export function highlight({
 export function removeHighlight(editor: vscode.TextEditor) {
 	editor.setDecorations(lineHighlight, []);
 	editor.setDecorations(cursorHighlight, []);
+	editor.setDecorations(selectionHighlight, []);
 }

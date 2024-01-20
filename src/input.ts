@@ -10,9 +10,11 @@ export type Input = {
 export function handleInput({
 	editor,
 	startNegative,
+	select,
 }: {
 	editor: vscode.TextEditor;
 	startNegative: boolean;
+	select: boolean;
 }) {
 	return new Promise<Input | undefined>((resolve) => {
 		const inputBox = vscode.window.createInputBox();
@@ -49,7 +51,7 @@ export function handleInput({
 					)}`;
 				}
 
-				highlight({ editor, input: result.value });
+				highlight({ editor, input: result.value, select });
 			}
 		});
 		inputBox.onDidAccept(() => {

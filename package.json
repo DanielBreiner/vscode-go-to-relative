@@ -3,7 +3,7 @@
 	"displayName": "Relative \"Go to Line\"",
 	"publisher": "DanielBreiner",
 	"description": "Command for jump/go to a line by relative row count (similar to vim)",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"engines": {
 		"vscode": "^1.85.0"
 	},
@@ -43,6 +43,14 @@
 			{
 				"command": "go-to-relative.goToLineNegative",
 				"title": "Go to Line/Column (Relative, Negative)..."
+			},
+			{
+				"command": "go-to-relative.selectToLine",
+				"title": "Select to Line/Column (Relative)..."
+			},
+			{
+				"command": "go-to-relative.selectToLineNegative",
+				"title": "Select to Line/Column (Relative, Negative)..."
 			}
 		],
 		"keybindings": [
