@@ -2,6 +2,8 @@
 
 This extensions adds an improved "Go to Line/Column (Relative)..." command for jumping a specific number of lines up or down.
 
+![Alt text](images/showcase.gif)
+
 ## Features
 
 -   Temporarily changes editor line numbers to relative to make jumping to a specific line easier
