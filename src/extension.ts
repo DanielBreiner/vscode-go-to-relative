@@ -46,6 +46,8 @@ async function command({
 		return;
 	}
 	const configuration = vscode.workspace.getConfiguration();
+	const initialSelection = editor.selection;
+  	const initialRange = new vscode.Range(initialSelection.start, initialSelection.end);
 	const initialSetting = configuration.get("editor.lineNumbers");
 	await configuration.update(
 		"editor.lineNumbers",
@@ -66,6 +68,10 @@ async function command({
 			select ? editor.selection.start : position,
 			position
 		);
+		editor.revealRange(editor.selection, vscode.TextEditorRevealType.InCenter);
+		
+	} else {
+		editor.revealRange(initialRange, vscode.TextEditorRevealType.InCenterIfOutsideViewport);
 	}
 	await configuration.update(
 		"editor.lineNumbers",
