@@ -47,7 +47,7 @@ export function highlight({
 	if (!editor.visibleRanges[0]?.contains(newPosition)) {
 		editor.revealRange(
 			new vscode.Range(newPosition, newPosition),
-			vscode.TextEditorRevealType.InCenterIfOutsideViewport
+			vscode.TextEditorRevealType.InCenter
 		);
 	}
 }
